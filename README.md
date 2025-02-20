@@ -15,7 +15,7 @@ Access the deployed app here: [Enhance Q&A Chatbot with OpenAI](https://enhance-
 
 ## Requirements
 - Python 3.7+
-- OpenAI API Key
+- [OpenAI API Key](https://platform.openai.com/api-keys)
 
 ## Getting Started
 
