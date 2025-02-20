@@ -28,7 +28,7 @@ prompt = ChatPromptTemplate.from_messages(
 
 #function to generate response from the chatbot
 def generate_response(question, api_key, model, temperature, max_token):
-    openai.api_key = api_key # you'll have to pass your api key every time you call this function (or you can load it from environment openai.api_key = os.getenv("OPENAI_API_KEY"))
+    os.environ["OPENAI_API_KEY"] = api_key # you'll have to pass your api key every time you call this function (or you can load it from environment openai.api_key = os.getenv("OPENAI_API_KEY"))
     model = ChatOpenAI(model = model)
     chain = prompt | model | StrOutputParser()
     response = chain.invoke(
@@ -56,11 +56,13 @@ max_token = st.sidebar.slider("Max Tokens", min_value=50, max_value=300, value=1
 st.write("Go ahead and ask any question")
 user_input = st.text_input("You:")
 
-if user_input:
-    response = generate_response(user_input, api_key, model, temperature, max_token)
-    st.write(response)
-    
-elif user_input:
-    st.warning("Please enter the openai api key in the sidebar")
+if user_input and api_key:  # Check both conditions
+    try:
+        response = generate_response(user_input, api_key, model, temperature, max_token)
+        st.write(response)
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
+elif user_input and not api_key:
+    st.warning("Please enter the OpenAI API key in the sidebar")
 else:
     st.write("Please provide a query")
