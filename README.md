@@ -21,7 +21,7 @@ Access the deployed app here: [Enhance Q&A Chatbot with OpenAI](https://enhance-
 
 1. Clone this repository
    ``` bash
-    git clone https://github.com/<your-username>/Enhance-QA-chatbot-with-OpenAI.git
+    git clone https://github.com/aljebraschool/Enhance-QA-chatbot-with-OpenAI.git
     cd Enhance-QA-chatbot-with-OpenAI
 
    ```
